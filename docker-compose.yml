@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  terraform:
+    build:
+      dockerfile: Dockerfile
+      args:
+        TERRAFORM_VERSION: ${TERRAFORM_VERSION}
+    image: terraform:test
+    container_name: compose-terraform
+    entrypoint: sh
+    tty: true
+  inspec:
+    image: "chef/inspec"
+    container_name: compose-inspec
+    volumes:
+      - type: bind
+        source: ./
+        target: /workdir
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+    working_dir: /workdir
+    depends_on:
+      - "compose-awscli"
+    entrypoint: inspec exec test/default -t docker://compose-terraform --input terraform_version=${TERRAFORM_VERSION} --chef-license accept-silent
