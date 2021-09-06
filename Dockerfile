@@ -16,3 +16,5 @@ RUN gpg --import hashicorp-public.key  && \
     rm terraform_${TERRAFORM_VERSION}* \
        hashicorp-public.key && \
     mv terraform /usr/local/bin
+
+ENTRYPOINT ["terraform"]
