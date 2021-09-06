@@ -2,8 +2,8 @@
 source_profile=id
 
 [profile id]
-mfa_serial=arn:aws:iam::230373767810:mfa/Bart_parka
+mfa_serial=arn:aws:iam::<ACCOUNT_1_NUMBER>:mfa/Bart_parka
 
 [profile acc2]
 include_profile = common
-role_arn=arn:aws:iam::767824166752:role/OrganizationAccountAccessRole
+role_arn=arn:aws:iam::<ACCOUNT_2_NUMBER>:role/OrganizationAccountAccessRole
